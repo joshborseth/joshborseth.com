@@ -25,14 +25,6 @@ const options: ISourceOptions = {
             speed: 8,
         } 
     },
-    interactivity: {
-        events: {
-            onClick: {
-                enable: true,
-                mode: "repulse",
-            }
-        },
-    },
     smooth: true,
 };
 ---
@@ -58,8 +50,9 @@ const options: ISourceOptions = {
     }
 </script>
 <main class="h-screen w-screen fixed overflow-hidden select-none">
-    <div class="w-full h-full flex justify-center items-center">
-        <h1 class="text-white font-black text-6xl text-center">Josh Borseth</h1>
+    <div class="w-full h-full text-center flex flex-col text-white justify-center gap-6 items-center">
+        <h1 class="text-6xl font-black">Josh Borseth</h1>
+        <a class="text-xl underline font-bold p-4" href="https://github.com/joshborseth">Github</a>
     </div>
 <Particles id="tsparticles" options={options} init="particlesInit" />
 </main>
