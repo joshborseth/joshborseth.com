@@ -1,10 +1,12 @@
 ---
+import { AstroFont } from "astro-font";
 import Particles from "astro-particles";
+import { Image } from "astro:assets";
 import type { ISourceOptions } from "tsparticles-engine";
 
 const options: ISourceOptions = {
   background: {
-    color: "#111",
+    color: "#17212b",
   },
   fullScreen: {
     zIndex: -1,
@@ -18,7 +20,7 @@ const options: ISourceOptions = {
       value: 1,
     },
     color: {
-      value: "#aaa",
+      value: "#ceced0",
     },
     move: {
       enable: true,
@@ -30,7 +32,7 @@ const options: ISourceOptions = {
 ---
 
 <script>
-  import { type Container, type Engine } from "tsparticles-engine";
+  import { type Engine } from "tsparticles-engine";
   import { loadFull } from "tsparticles";
 
   // the function name is the parameter passed to the init attribute
@@ -40,19 +42,36 @@ const options: ISourceOptions = {
   window.particlesInit = async function (engine: Engine) {
     await loadFull(engine);
   };
-
-  // the function name is the parameter passed to the loaded attribute
-  // optional
-  // add the function to window is mandatory, it will be searched there
-  //@ts-ignore
-  window.particlesLoaded = function (container: Container) {
-    console.log("particlesLoaded callback");
-  };
 </script>
+<head>
+  <AstroFont
+    config={[
+      {
+        src: [],
+        name: "Poppins",
+        googleFontsURL: "https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;1,400;1,700&display=swap",
+        preload: true,
+        display: "swap",
+        selector: "body",
+        fallback: "sans-serif",
+      },
+    ]}
+  />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
 <main class="h-screen w-screen fixed overflow-hidden">
   <div class="w-full h-full text-center flex flex-col text-white justify-center gap-6 items-center">
-    <h1 class="text-6xl font-black">Joshua Borseth</h1>
-    <a class="text-xl underline font-bold p-4" href="https://github.com/joshborseth">Github</a>
+    <Image alt="Joshua Borseth" src="/josh.png" width="200" height="200" class="rounded-full" />
+    <h1 class="lg:text-8xl text-6xl font-semibold">Joshua Borseth</h1>
+    <h2 class="text-primary text-3xl">Full Stack Developer</h2>
+    <a class="text-xl underline p-4" href="https://github.com/joshborseth">Github</a>
   </div>
   <Particles id="tsparticles" options={options} init="particlesInit" />
 </main>
+
+<style>
+  body,
+  html {
+    @apply bg-background;
+  }
+</style>
