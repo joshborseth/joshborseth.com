@@ -3,7 +3,8 @@ import { AstroFont } from "astro-font";
 import Particles from "astro-particles";
 import { Image } from "astro:assets";
 import type { ISourceOptions } from "tsparticles-engine";
-
+import Card from "../components/card.astro";
+import Section from "../components/section.astro";
 const options: ISourceOptions = {
   background: {
     color: "#17212b",
@@ -59,19 +60,20 @@ const options: ISourceOptions = {
   />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
-<main class="h-screen w-screen fixed overflow-hidden">
-  <div class="w-full h-full text-center flex flex-col text-white justify-center gap-6 items-center">
+<main class="max-w-6xl mx-auto w-full px-4">
+  <section class="w-full min-h-screen text-center flex flex-col text-white justify-center gap-6 items-center">
     <Image alt="Joshua Borseth" src="/josh.png" width="200" height="200" class="rounded-full" />
     <h1 class="lg:text-8xl text-6xl font-semibold">Joshua Borseth</h1>
     <h2 class="text-primary text-3xl">Full Stack Developer</h2>
-    <a class="text-xl underline p-4" href="https://github.com/joshborseth">Github</a>
-  </div>
+    <a class="text-lg underline p-4" href="https://github.com/joshborseth">Github</a>
+  </section>
+  <Section title="Work Experience">
+    <Card description="Developed a platform for sending custom branded MasterCard's to customers for loyalty rewards." link="https://locorum.io/" title="Locorum">
+      <Image slot="image" alt="Locorum" src="/locorum.webp" width="40" height="40" class="rounded-full" />
+    </Card>
+    <Card link="https://0footprint.net/" description="Developed web and mobile applications for clients in healthcare and education sectors." title="0footprint Tech Services">
+      <Image slot="image" alt="0footprint Tech Services" src="/0footprint.png" width="40" height="40" class="rounded-full" />
+    </Card>
+  </Section>
   <Particles id="tsparticles" options={options} init="particlesInit" />
 </main>
-
-<style>
-  body,
-  html {
-    @apply bg-background;
-  }
-</style>

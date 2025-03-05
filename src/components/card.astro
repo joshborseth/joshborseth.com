@@ -1,0 +1,18 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  link: string;
+}
+const { title, description, link } = Astro.props;
+---
+
+<article class="w-full max-w-xl rounded-lg text-black bg-white p-4 flex flex-col gap-2">
+  <div class="flex gap-2 items-center">
+    <slot name="image" />
+    <h3 class="text-xl md:text-2xl font-semibold">{title}</h3>
+  </div>
+
+  <p class="text-sm md:text-base">{description}</p>
+  <a href={link} target="_blank" class="text-cyan-700 self-start underline text-sm md:text-base">{link.replaceAll("https://", "").replaceAll("/", "")}</a>
+</article>
