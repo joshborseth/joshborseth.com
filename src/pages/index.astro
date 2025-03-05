@@ -30,6 +30,11 @@ const options: ISourceOptions = {
   },
   smooth: true,
 };
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const title = "Joshua Borseth";
+const description = "Full Stack Engineer";
+const image = "/josh.png";
 ---
 
 <script>
@@ -44,27 +49,53 @@ const options: ISourceOptions = {
     await loadFull(engine);
   };
 </script>
-<head>
-  <AstroFont
-    config={[
-      {
-        src: [],
-        name: "Poppins",
-        googleFontsURL: "https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;1,400;1,700&display=swap",
-        preload: true,
-        display: "swap",
-        selector: "body",
-        fallback: "sans-serif",
-      },
-    ]}
-  />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-</head>
+
+<!-- Global Metadata -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="sitemap" href="/sitemap-index.xml" />
+<link rel="alternate" type="application/rss+xml" title={title} href={new URL("rss.xml", Astro.site)} />
+<meta name="generator" content={Astro.generator} />
+
+<!-- Canonical URL -->
+<link rel="canonical" href={canonicalURL} />
+
+<!-- Primary Meta Tags -->
+<title>{title}</title>
+<meta name="title" content={title} />
+<meta name="description" content={description} />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content={Astro.url} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={new URL(image, Astro.url)} />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={Astro.url} />
+<meta property="twitter:title" content={title} />
+<meta property="twitter:description" content={description} />
+<meta property="twitter:image" content={new URL(image, Astro.url)} />
+<AstroFont
+  config={[
+    {
+      src: [],
+      name: "Poppins",
+      googleFontsURL: "https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;1,400;1,700&display=swap",
+      preload: true,
+      display: "swap",
+      selector: "body",
+      fallback: "sans-serif",
+    },
+  ]}
+/>
 <main class="max-w-6xl mx-auto w-full px-4">
   <section class="w-full min-h-screen text-center flex flex-col text-white justify-center gap-6 items-center">
-    <Image alt="Joshua Borseth" src="/josh.png" width="200" height="200" class="rounded-full" />
-    <h1 class="lg:text-8xl text-6xl font-semibold">Joshua Borseth</h1>
-    <h2 class="text-primary text-3xl">Full Stack Developer</h2>
+    <Image alt={title} src="/josh.png" width="200" height="200" class="rounded-full" />
+    <h1 class="lg:text-8xl text-6xl font-semibold">{title}</h1>
+    <h2 class="text-primary text-3xl">{description}</h2>
     <a class="text-lg underline p-4" href="https://github.com/joshborseth">Github</a>
   </section>
   <Section title="Work Experience">
